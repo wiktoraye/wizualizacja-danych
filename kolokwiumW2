@@ -1,0 +1,100 @@
+#Kolokwium Wiktor Jakacki 169247 Wariant 2
+#Zadanie 2.1
+def sort(n):
+    sortedlist = sorted(n)
+    return sortedlist
+list = [6,2,4,1,5,3]
+print(sort(list))
+
+#Zadanie 2.2
+string = "abcdewghij klmnoupr stw"
+string=string.replace(" ","")
+print(string)
+for i in range(2,len(string),5):
+    print(string[i])
+
+#Zadanie 2.3
+def func(n):
+    if n == 0 : return 0
+    elif n == 1 : return 1
+    else:
+        return 2*func(n-1)+func(n-2)
+print(func(14))
+
+#Zadanie 2.4
+def func2(*args):
+    suma=0
+    for arg in args:
+        suma=suma+(arg**2)
+    return suma
+print(func2(5,-1,7))
+
+#zadanie 2.5
+list2 = [x**2 for x in range(2, 51, 2)]
+print(list2)
+
+#Zadanie 2.6
+def encrypt(word, key):
+    newword = ""
+    for letter in word:
+        if letter in key:
+            newword += key[letter]
+        else:
+            newword += letter
+    return newword
+
+def unencrypt(word, key):
+    reversekey = {value: key for key, value in key.items()}
+    return encrypt(word, reversekey)
+
+key = {'a':'y','e':'i','i':'o','o':'a','y':'e'}
+word='informatyka'
+word=encrypt(word,key)
+print(word)
+word=unencrypt(word,key)
+print(word)
+
+#Zadanie 2.7
+
+class Frac:
+    def __init__(self, licznik, mianownik):
+        self.licznik = licznik
+        self.mianownik = mianownik
+
+    def skroc(self):
+        a = self.licznik
+        b = self.mianownik
+        while b != 0:
+            a, b = b, a % b
+        gcd = a
+        self.licznik //= gcd
+        self.mianownik //= gcd
+
+    def __str__(self):
+        self.skroc()
+        return str(self.licznik) + '/' + str(self.mianownik)
+
+    def __sub__(self, other):
+        licznik = self.licznik * other.mianownik - other.licznik * self.mianownik
+        mianownik = self.mianownik * other.mianownik
+        return Frac(licznik, mianownik)
+
+    def __truediv__(self, other):
+        licznik = self.licznik * other.mianownik
+        mianownik = self.mianownik * other.licznik
+        return Frac(licznik, mianownik)
+
+    def __eq__(self, other):
+        self.skroc()
+        other.skroc()
+        return self.licznik == other.licznik and self.mianownik == other.mianownik
+
+
+
+
+frac1 = Frac(2, 6)
+frac2 = Frac(1, 5)
+print(frac1)
+print(frac1 - frac2)
+print(frac1 == frac2)
+print(frac1 / frac2)
