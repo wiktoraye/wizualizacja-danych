@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+
+a = pd.Series([-1,1,3,5,7])
+b = pd.DataFrame(["elo","pa","nara","czesc"])
+print(a.describe())
+
+lista_zakupow = ['Jajka', 'Mleko', 'Chleb', 'Masło', 'Marchewki', 'Jabłka']
+seria_zakupow = pd.DataFrame(lista_zakupow)
+
+tablica = np.array([1, 2, 3, 4, 5])
+seria = pd.Series(tablica)
+
+tablica2 = np.array(a)
+
+
+seria1 = pd.Series([10, 20, 30])
+seria2 = pd.Series([5, 15, 25])
+print(seria1 + seria2)
+print(seria1 - seria2)
+print(seria1 * seria2)
+print(seria1 / seria2)
+
+seria3 = pd.Series(np.random.uniform(-10, 10, size=10))
+seria4 = seria1[seria1 < 0]
+print(seria3)
+
+my_list = [1, 32, -37, 91, 12, 11, -5]
+df_list = pd.DataFrame(my_list, columns=['values'], index=['a', 'b', 'c', 'd', 'e', 'f', 'g'])
+print("DataFrame z listy:")
+print(df_list)
+
+# Słownik
+my_dict = {'a' : [1, 3, 2], 'b' : [2, 5, 7], 'c' : [3, 4, 8], 'd': [4, 10, 12]}
+df_dict = pd.DataFrame.from_dict(my_dict, orient='index', columns=['col1', 'col2', 'col3'])
+df_dict.index.name = 'keys'
+print("\nDataFrame ze słownika:")
+print(df_dict)
+
+# Tablica NumPy
+my_array = np.array([[1, 2, 5],[-2, 3, 3], [5, 2, 6]])
+df_array = pd.DataFrame(my_array, columns=['col1', 'col2', 'col3'], index=['row1', 'row2', 'row3'])
+print("\nDataFrame z tablicy NumPy:")
+print(df_array)
+
+# Seria danych
+my_series = pd.Series([1, 32, -37, 91, 12, 11, -5], index=['a','b','c','d','e','f','g'])
+df_series = pd.DataFrame(my_series, columns=['values'])
+print("\nDataFrame z serii danych:")
+print(df_series)
